@@ -1,0 +1,92 @@
+<div class="container">
+    <div class="row">
+        <div class="col-sm-4 mt-5">Order Number:</div>
+        <div class="col-sm-4 mt-5">
+         <!-----   <input type="text" placeholder="Enter Your Number">-->
+            <input type="text" class="form-control" id="name" required [(ngModel)]="oneway.Firstname" name="name">
+            {{oneway.Firstname}}
+        </div>
+
+        <div class="col-sm-2 mt-5">
+            <button (click)="onSubmit()"type="button" class="btn btn-primary">Submit</button>
+        </div>
+    </div>
+</div>
+<section *ngIf="showTable">
+<div class="container mt-5 ">
+    <h4 class="text-center">Order Details</h4>
+    <div class="row text-center">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th scope="col">Details</th>
+                    <th scope="col">Address</th>
+                    <th scope="col">Contact</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+
+
+                    <td>{{oneway.Firstname}}</td>
+                    <td>{{oneway.address.street}}</td>
+                    <td>{{oneway.address.phno}}</td>
+                </tr>
+                <tr>
+                    <td>{{singleorderjson?.orderList?.orderDetails.productNumber}}<br>
+                        {{singleorderjson?.orderList?.orderDetails.productName}}<br>
+                        {{singleorderjson?.orderList?.orderDetails.productDescription}}<br>
+                        {{singleorderjson?.orderList?.orderDetails.productPrice}}<br>
+
+                    </td>
+                    <td>{{singleorderjson?.orderList?.address.houseNo}},
+                        {{singleorderjson?.orderList?.address.laneName}},
+                        {{singleorderjson?.orderList?.address.landmark}},
+                        {{singleorderjson?.orderList?.address.district}},
+                        {{singleorderjson?.orderList?.address.city}},
+                        {{singleorderjson?.orderList?.address.state}},
+                        {{singleorderjson?.orderList?.address.pin}}
+                    </td>
+                    <td>{{singleorderjson?.orderList?.contactDetails.phoneNo}}<br>
+                        {{singleorderjson?.orderList?.contactDetails.emailId}}<br>
+                        {{singleorderjson?.orderList?.contactDetails.alternateNo}}
+                    </td>
+                </tr>
+
+
+            </tbody>
+        </table>
+
+    </div>
+</div>
+</section>
+
+<div class="container" *ngIf="showTable">
+    <h4 class="text-center mt-5">Order status log</h4>
+    <div class="row">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th scope="col">SNo</th>
+                    <th scope="col">Date </th>
+                    <th scope="col">Time</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                <tr *ngFor="let data of singleorderjson?.orderLog">
+
+                    <td>{{data.sNo}}</td>
+                    <td>{{data.date}}</td>
+                    <td>{{data.time}}</td>
+                    <td>{{data.status}}</td>
+                    <td>{{data.description}}</td>
+                </tr>
+
+
+            </tbody>
+        </table>
+    </div>
+</div>
